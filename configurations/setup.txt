@@ -1,0 +1,24 @@
+plugin.tx_advaddress.configurations {
+	maximalItemsToDisplay = 20
+	pathToLanguageFile = EXT:adv_address/locallang.xml
+	templatePath = EXT:adv_address/templates/
+	imagePath = fileadmin/user_upload/images/
+	listTemplate = listView.php
+	detailTemplate = detailView.php
+	dateFormat = %d. %B %Y
+}
+
+// We don't want to cache during development, we set it to USER later.
+plugin.tx_advaddress.controllers.list = USER_INT
+plugin.tx_advaddress.controllers.list < plugin.tx_advaddress.configurations
+plugin.tx_advaddress.controllers.list.userFunc = tx_advaddress_controllers_list->main
+plugin.tx_advaddress.controllers.list.action = listAction
+
+includeLibs.tx_div = EXT:div/class.tx_div.php
+includeLibs.tx_advaddress_controllers_list = EXT:adv_address/controllers/class.tx_advaddress_controllers_list.php
+
+tt_content.list.20.tx_advaddress_list =< plugin.tx_advaddress.controllers.list
+
+
+
+
